@@ -1,0 +1,3766 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkiye & Dünya Borsası Şirketleri Portalı</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e30a17;
+            --secondary-color: #00245d;
+            --accent-color: #f5f5f5;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --dark-gray: #444;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --us-primary-color: #3b5998;
+            --us-secondary-color: #1a1a1a;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Animated Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(227, 10, 23, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(0, 36, 93, 0.3);
+            animation-duration: 20s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .particle-line {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(227, 10, 23, 0.2), transparent);
+            animation: lineFloat 10s infinite linear;
+        }
+
+        @keyframes lineFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.3s both;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-stat {
+            text-align: center;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .header-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .header-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Enhanced Navigation */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255,255,255,0.95);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--secondary-color) !important;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 600;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 15px;
+            border-radius: 25px;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+            background-color: rgba(227, 10, 23, 0.05);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* Enhanced Hero Section */
+        .hero-section {
+            position: relative;
+            height: 700px;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            filter: brightness(0.7);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: heroFadeIn 1.5s ease;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .hero-section h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: slideInFromTop 1s ease;
+            line-height: 1.2;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-section p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: slideInFromBottom 1s ease 0.3s both;
+            line-height: 1.6;
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .hero-btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .hero-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .hero-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 2;
+        }
+
+        .hero-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hero-indicator.active {
+            background: white;
+            transform: scale(1.3);
+            border-color: var(--primary-color);
+        }
+
+        .hero-indicator:hover {
+            background: rgba(255,255,255,0.8);
+            transform: scale(1.1);
+        }
+        
+        /* Enhanced Filter Section */
+        .filter-section {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .filter-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(227,10,23,0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .search-box input {
+            border: 3px solid #e9ecef;
+            border-radius: 50px;
+            padding: 18px 30px 18px 60px;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(227, 10, 23, 0.25);
+            outline: none;
+            transform: scale(1.02);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-box input:focus + i {
+            color: var(--primary-color);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            color: var(--text-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn:hover::before, .filter-btn.active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .filter-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Enhanced Company Cards */
+        .company-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeInScale 0.6s ease both;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(227,10,23,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .company-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .company-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header-custom::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        .company-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: contain;
+            position: absolute;
+            top: -45px;
+            left: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background-color: white;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .company-card:hover .company-logo {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            margin-left: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .company-card:hover .company-name {
+            transform: translateX(5px);
+        }
+        
+        .company-ticker {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-left: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .company-card:hover .company-ticker {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .card-body-custom {
+            padding: 35px;
+            padding-top: 70px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .info-section:nth-child(1) { animation-delay: 0.1s; }
+        .info-section:nth-child(2) { animation-delay: 0.2s; }
+        .info-section:nth-child(3) { animation-delay: 0.3s; }
+        .info-section:nth-child(4) { animation-delay: 0.4s; }
+        .info-section:nth-child(5) { animation-delay: 0.5s; }
+        .info-section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .info-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-section:hover .info-title {
+            transform: translateX(5px);
+        }
+        
+        .info-title i {
+            margin-right: 12px;
+            color: var(--primary-color);
+            width: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-section:hover .info-title i {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .info-content {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .info-section:hover .info-content {
+            color: var(--text-color);
+        }
+        
+        .view-details-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .view-details-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .view-details-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .view-details-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .view-details-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        /* US Company Cards */
+        .us-company-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeInScale 0.6s ease both;
+        }
+
+        .us-company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(59,89,152,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .us-company-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .us-company-card:hover::before {
+            opacity: 1;
+        }
+        
+        .us-card-header-custom {
+            background: linear-gradient(135deg, var(--us-primary-color) 0%, var(--us-secondary-color) 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .us-card-header-custom::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .us-company-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: contain;
+            position: absolute;
+            top: -45px;
+            left: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background-color: white;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .us-company-card:hover .us-company-logo {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .us-company-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            margin-left: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .us-company-card:hover .us-company-name {
+            transform: translateX(5px);
+        }
+        
+        .us-company-ticker {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-left: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .us-company-card:hover .us-company-ticker {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .us-card-body-custom {
+            padding: 35px;
+            padding-top: 70px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .us-info-section {
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .us-info-section:nth-child(1) { animation-delay: 0.1s; }
+        .us-info-section:nth-child(2) { animation-delay: 0.2s; }
+        .us-info-section:nth-child(3) { animation-delay: 0.3s; }
+        .us-info-section:nth-child(4) { animation-delay: 0.4s; }
+        .us-info-section:nth-child(5) { animation-delay: 0.5s; }
+        .us-info-section:nth-child(6) { animation-delay: 0.6s; }
+        
+        .us-info-title {
+            font-weight: 700;
+            color: var(--us-secondary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .us-info-section:hover .us-info-title {
+            transform: translateX(5px);
+        }
+        
+        .us-info-title i {
+            margin-right: 12px;
+            color: var(--us-primary-color);
+            width: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .us-info-section:hover .us-info-title i {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .us-info-content {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .us-info-section:hover .us-info-content {
+            color: var(--text-color);
+        }
+        
+        .us-view-details-btn {
+            background: linear-gradient(135deg, var(--us-primary-color), var(--us-secondary-color));
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .us-view-details-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .us-view-details-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .us-view-details-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .us-view-details-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Enhanced Modal */
+        .modal-content {
+            border-radius: 25px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s ease;
+            border: none;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-header-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header-custom::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .modal-title-custom {
+            font-weight: 800;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .modal-body-custom {
+            padding: 40px;
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+        }
+        
+        .detail-section {
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .detail-section:nth-child(1) { animation-delay: 0.1s; }
+        .detail-section:nth-child(2) { animation-delay: 0.2s; }
+        .detail-section:nth-child(3) { animation-delay: 0.3s; }
+        .detail-section:nth-child(4) { animation-delay: 0.4s; }
+        .detail-section:nth-child(5) { animation-delay: 0.5s; }
+        .detail-section:nth-child(6) { animation-delay: 0.6s; }
+        
+        .detail-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .detail-section:hover .detail-title {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .detail-title i {
+            margin-right: 15px;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .detail-section:hover .detail-title i {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .detail-content {
+            color: #555;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .detail-section:hover .detail-content {
+            color: var(--text-color);
+        }
+
+        /* Modal Logo Styles */
+        .modal-logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .modal-logo {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-logo:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-company-header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .modal-company-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 60px;
+            height: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .modal-company-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .modal-company-header:hover .modal-company-name {
+            color: var(--primary-color);
+        }
+
+        .modal-company-ticker {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-company-ticker:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-company-sector {
+            color: #6c757d;
+            font-size: 1.2rem;
+            font-style: italic;
+            transition: color 0.3s ease;
+        }
+
+        .modal-company-header:hover .modal-company-sector {
+            color: var(--text-color);
+        }
+        
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #001a40 100%);
+            color: white;
+            padding: 70px 0 50px;
+            margin-top: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+        
+        .footer h5 {
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer ul li {
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer a:hover::after {
+            width: 100%;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        .social-icons a:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Enhanced Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-container {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Enhanced Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: none;
+            align-items: center;
+            z-index: 9999;
+            animation: slideInRight 0.4s ease;
+            min-width: 350px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-toast.success {
+            border-left: 5px solid #28a745;
+        }
+
+        .notification-toast.error {
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .notification-toast i {
+            margin-right: 20px;
+            font-size: 24px;
+        }
+
+        .notification-toast.success i {
+            color: #28a745;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .notification-toast.error i {
+            color: var(--primary-color);
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* US Companies Page Styles */
+        .us-companies-page {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .us-companies-page.active {
+            display: block;
+        }
+
+        .us-companies-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .us-companies-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--us-secondary-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--us-primary-color), var(--us-secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .us-companies-subtitle {
+            font-size: 1.3rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .us-filter-section {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease;
+        }
+
+        .us-filter-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,89,152,0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .us-filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .us-filter-btn {
+            border: 2px solid #e9ecef;
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            color: var(--text-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .us-filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--us-primary-color), var(--us-secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .us-filter-btn:hover, .us-filter-btn.active {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .us-filter-btn:hover::before, .us-filter-btn.active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Sectors Page Styles */
+        .sectors-page {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .sectors-page.active {
+            display: block;
+        }
+
+        .sector-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeInScale 0.6s ease both;
+            margin-bottom: 40px;
+        }
+
+        .sector-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .sector-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sector-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .sector-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sector-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sector-count {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sector-body {
+            padding: 35px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sector-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .sector-companies {
+            margin-top: auto;
+        }
+
+        .sector-companies-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .sector-company-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sector-company-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .sector-company-item:last-child {
+            border-bottom: none;
+        }
+
+        .sector-company-item:hover {
+            background-color: rgba(227, 10, 23, 0.05);
+            padding-left: 15px;
+        }
+
+        .sector-company-name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .sector-company-ticker {
+            background: rgba(227, 10, 23, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .view-sector-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .view-sector-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Contact Page Styles */
+        .contact-page {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .contact-page.active {
+            display: block;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            margin-bottom: 40px;
+        }
+
+        .contact-form-group {
+            margin-bottom: 30px;
+        }
+
+        .contact-form-label {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .contact-form-control {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(227, 10, 23, 0.25);
+            outline: none;
+        }
+
+        .contact-form-textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .contact-form-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .contact-form-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            margin-bottom: 40px;
+            height: 100%;
+        }
+
+        .contact-info-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .contact-info-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-icon {
+            background: rgba(227, 10, 23, 0.1);
+            color: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-content {
+            flex-grow: 1;
+        }
+
+        .contact-info-label {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-value {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .contact-map {
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-top: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section {
+                height: 600px;
+            }
+
+            .hero-section p {
+                font-size: 1.2rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .company-card {
+                margin-bottom: 40px;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .modal-logo {
+                max-width: 120px;
+                max-height: 120px;
+            }
+
+            .modal-company-name {
+                font-size: 1.8rem;
+            }
+
+            .us-companies-title {
+                font-size: 2rem;
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Enhanced Comparison Feature */
+        .comparison-bar {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-bar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .comparison-bar.show {
+            display: flex;
+        }
+
+        .comparison-count {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .compare-checkbox {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .compare-checkbox input {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .compare-checkbox input:checked + label {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .compare-checkbox label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Shareholders Table Styles */
+        .shareholders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .shareholders-table th {
+            background-color: rgba(227, 10, 23, 0.1);
+            color: var(--secondary-color);
+            font-weight: 700;
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .shareholders-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .shareholders-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .shareholders-table tr:hover {
+            background-color: rgba(227, 10, 23, 0.05);
+        }
+
+        .shareholder-percentage {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Enhanced Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Yükleniyor...</div>
+        </div>
+    </div>
+
+    <!-- Enhanced Notification Toast -->
+    <div class="notification-toast" id="notificationToast">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationMessage">İşlem başarılı!</span>
+    </div>
+
+    <!-- Enhanced Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-chart-line me-3"></i>Türkiye & Dünya Borsası Şirketleri Portalı</h1>
+            <p>Borsa İstanbul ve ABD borsalarında işlem gören önde gelen şirketler hakkında kapsamlı bilgiler</p>
+            <div class="header-stats">
+                <div class="header-stat">
+                    <span class="header-stat-number" id="totalCompanies">17</span>
+                    <span class="header-stat-label">Toplam Şirket</span>
+                </div>
+                <div class="header-stat">
+                    <span class="header-stat-number">5</span>
+                    <span class="header-stat-label">Sektör</span>
+                </div>
+                <div class="header-stat">
+                    <span class="header-stat-number">2</span>
+                    <span class="header-stat-label">Borsa</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Enhanced Navigation -->
+    <nav class="navbar navbar-expand-lg" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="navigateTo('home')">
+                <i class="fas fa-chart-line me-2"></i>Borsa Portal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="navigateTo('home')">
+                            <i class="fas fa-home me-2"></i>Ana Sayfa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('companies')">
+                            <i class="fas fa-building me-2"></i>Türk Şirketleri
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('us-companies')">
+                            <i class="fas fa-globe-americas me-2"></i>Amerikan Şirketleri
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('sectors')">
+                            <i class="fas fa-industry me-2"></i>Sektörler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="navigateTo('contact')">
+                            <i class="fas fa-envelope me-2"></i>İletişim
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <div class="hero-slideshow" id="heroSlideshow">
+            <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/borsa1/1600/700.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/borsa2/1600/700.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/borsa3/1600/700.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/borsa4/1600/700.jpg')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Global Borsa Şirketleri Platformu</h2>
+            <p>Türkiye ve ABD borsalarındaki lider şirketleri keşfedin, karşılaştırın ve detaylı analizlere ulaşın</p>
+            <div class="hero-buttons">
+                <button class="hero-btn hero-btn-primary" onclick="navigateTo('companies')">
+                    <i class="fas fa-search me-2"></i>Şirketleri Keşfet
+                </button>
+                <button class="hero-btn hero-btn-secondary" onclick="navigateTo('sectors')">
+                    <i class="fas fa-chart-pie me-2"></i>Sektör Analizi
+                </button>
+            </div>
+        </div>
+        <div class="hero-indicators" id="heroIndicators"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container" id="mainContent">
+        <!-- Stats Cards -->
+        <div class="stats-container scroll-animate">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">Türk Şirketi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="stat-number">7</div>
+                <div class="stat-label">Amerikan Şirketi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="stat-number">5</div>
+                <div class="stat-label">Farklı Sektör</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Toplam Çalışan</div>
+            </div>
+        </div>
+
+        <!-- Enhanced Filter Section -->
+        <section class="filter-section scroll-animate" id="filterSection">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Şirket adı veya ticker kodu ile arayın...">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-th me-2"></i>Tümü
+                        </button>
+                        <button class="filter-btn" data-filter="bankacilik">
+                            <i class="fas fa-university me-2"></i>Bankacılık
+                        </button>
+                        <button class="filter-btn" data-filter="sanayi">
+                            <i class="fas fa-industry me-2"></i>Sanayi
+                        </button>
+                        <button class="filter-btn" data-filter="holding">
+                            <i class="fas fa-sitemap me-2"></i>Holding
+                        </button>
+                        <button class="filter-btn" data-filter="tasimacilik">
+                            <i class="fas fa-plane me-2"></i>Taşımacılık
+                        </button>
+                        <button class="filter-btn" data-filter="insaat">
+                            <i class="fas fa-hard-hat me-2"></i>İnşaat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Companies Grid -->
+        <section class="row" id="companiesContainer">
+            <!-- Company cards will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <!-- US Companies Page -->
+    <section class="us-companies-page container" id="usCompaniesPage">
+        <div class="row">
+            <div class="col-12">
+                <div class="us-companies-header">
+                    <h2 class="us-companies-title">Amerikan Teknoloji Devleri</h2>
+                    <p class="us-companies-subtitle">ABD borsalarında işlem gören teknoloji liderleri ve inovasyon şirketleri hakkında detaylı bilgiler</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- US Filter Section -->
+        <section class="us-filter-section scroll-animate" id="usFilterSection">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="usSearchInput" placeholder="Şirket adı veya ticker kodu ile arayın...">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="us-filter-buttons">
+                        <button class="us-filter-btn active" data-filter="all">
+                            <i class="fas fa-th me-2"></i>Tümü
+                        </button>
+                        <button class="us-filter-btn" data-filter="teknoloji">
+                            <i class="fas fa-microchip me-2"></i>Teknoloji
+                        </button>
+                        <button class="us-filter-btn" data-filter="otomotiv">
+                            <i class="fas fa-car me-2"></i>Otomotiv
+                        </button>
+                        <button class="us-filter-btn" data-filter="perakende">
+                            <i class="fas fa-shopping-cart me-2"></i>Perakende
+                        </button>
+                        <button class="us-filter-btn" data-filter="finans">
+                            <i class="fas fa-dollar-sign me-2"></i>Finans
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- US Companies Grid -->
+        <section class="row" id="usCompaniesContainer">
+            <!-- US Company cards will be dynamically inserted here -->
+        </section>
+    </section>
+
+    <!-- Sectors Page -->
+    <section class="sectors-page container" id="sectorsPage">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-header">
+                    <h2 class="contact-title">Sektörel Analiz</h2>
+                    <p class="contact-subtitle">Borsa İstanbul'da işlem gören şirketlerin sektörel dağılımı ve analizleri</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="sectorsContainer">
+            <!-- Sector cards will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section class="contact-page container" id="contactPage">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-header">
+                    <h2 class="contact-title">İletişim</h2>
+                    <p class="contact-subtitle">Bize ulaşın ve sorularınızı paylaşın</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-card">
+                    <h3 class="contact-info-title">Mesaj Gönderin</h3>
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="contact-form-group">
+                                    <label class="contact-form-label" for="name">Adınız Soyadınız</label>
+                                    <input type="text" class="contact-form-control" id="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-form-group">
+                                    <label class="contact-form-label" for="email">E-posta Adresiniz</label>
+                                    <input type="email" class="contact-form-control" id="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="subject">Konu</label>
+                            <input type="text" class="contact-form-control" id="subject" required>
+                        </div>
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="message">Mesajınız</label>
+                            <textarea class="contact-form-control contact-form-textarea" id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-form-btn">
+                            <i class="fas fa-paper-plane me-2"></i>Mesajı Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info-card">
+                    <h3 class="contact-info-title">İletişim Bilgileri</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <div class="contact-info-label">Adres</div>
+                            <div class="contact-info-value">Büyükdere Cad. No:123<br>Levent, İstanbul</div>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <div class="contact-info-label">Telefon</div>
+                            <div class="contact-info-value">+90 212 555 0123</div>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <div class="contact-info-label">E-posta</div>
+                            <div class="contact-info-value">info@borsaportal.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <div class="contact-info-label">Çalışma Saatleri</div>
+                            <div class="contact-info-value">Pazartesi - Cuma: 09:00 - 18:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.915641736596!2d28.989618314842834!3d41.07742397929337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650636a8e7%3A0x5c6e0d5a6d6e6d6e!2sLevent%2C%20%C4%B0stanbul!5e0!3m2!1str!2str!4v1623456789012!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Enhanced Company Detail Modal -->
+    <div class="modal fade" id="companyDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title modal-title-custom" id="modalTitle">Şirket Detayları</h5>
+                    <button type="button" class="btn-close btn-close-white" id="modalCloseBtn"></button>
+                </div>
+                <div class="modal-body modal-body-custom" id="modalBody">
+                    <!-- Company details will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modalFooterCloseBtn">Kapat</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadReport()">
+                        <i class="fas fa-download me-2"></i>Rapor İndir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Bar -->
+    <div class="comparison-bar" id="comparisonBar" onclick="showComparison()">
+        <i class="fas fa-balance-scale me-2"></i>
+        <span>Karşılaştır</span>
+        <span class="comparison-count" id="comparisonCount">0</span>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>Borsa Portal</h5>
+                    <p>Türkiye ve dünya borsalarındaki şirketler hakkında kapsamlı bilgi platformu</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" onclick="openSocial('twitter')"><i class="fab fa-twitter"></i></a>
+                        <a href="#" onclick="openSocial('linkedin')"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" onclick="openSocial('facebook')"><i class="fab fa-facebook"></i></a>
+                        <a href="#" onclick="openSocial('instagram')"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Hızlı Linkler</h5>
+                    <ul>
+                        <li><a href="#" onclick="navigateTo('home')">Ana Sayfa</a></li>
+                        <li><a href="#" onclick="navigateTo('companies')">Türk Şirketleri</a></li>
+                        <li><a href="#" onclick="navigateTo('us-companies')">Amerikan Şirketleri</a></li>
+                        <li><a href="#" onclick="navigateTo('sectors')">Sektörler</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>İletişim</h5>
+                    <p><i class="fas fa-envelope me-2"></i><a href="mailto:info@borsaportal.com">info@borsaportal.com</a></p>
+                    <p><i class="fas fa-phone me-2"></i><a href="tel:+902125550123">+90 212 555 0123</a></p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>İstanbul, Türkiye</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Borsa Portal. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Turkish Company data
+        const companies = [
+            {
+                id: 1,
+                name: "ASELSAN",
+                ticker: "ASELS",
+                ceo: "Ahmet Akyol",
+                sector: "sanayi",
+                sectorName: "Savunma Sanayi",
+                activities: "Şirket, her türlü kurum, kuruluşa yönelik kara, hava, deniz ve uzay uygulamaları kapsamında her nev'i elektrik, elektronik, yazılım, cihaz, sistem, araç, gereç ve platformlarının araştırma, geliştirme, mühendislik, üretim, ve satışını yapmak.",
+                facilities: "Macunköy, Akyurt ve diğer teknoloji üsleri — büyük entegre tesisler.",
+                ownership: "Türk Silahlı Kuvvetlerini Güçlendirme Vakfı (%74.2) ve Diğer (%25.8).",
+                image: "https://z-cdn-media.chatglm.cn/files/d46c1b55-8c49-4105-bfd0-d898dc882f37_V6zakz7y_400x400.jpg?auth_key=1790770424-a7d7fa663eb14e888745c57a4c8e78b8-0-ba433df94bf0eb607ab2581484d65ed9",
+                foundation: "14.11.1975",
+                employees: "13.508",
+                website: "https://www.aselsan.com.tr",
+                twitter: "https://twitter.com/aselsan",
+                linkedin: "https://www.linkedin.com/company/aselsan",
+                facebook: "https://www.facebook.com/aselsan",
+                instagram: "https://www.instagram.com/aselsan"
+            },
+            {
+                id: 2,
+                name: "Garanti BBVA",
+                ticker: "GARAN",
+                ceo: "Mahmut Akten",
+                sector: "bankacilik",
+                sectorName: "Bankacılık",
+                activities: "Ticari bankacılık.",
+                facilities: "797 banka şubesi ve dijital kanallar.",
+                ownership: "Banco Bilbao Vizcaya Argentaria (%85.97) ve Diğer (%14.03).",
+                image: "https://z-cdn-media.chatglm.cn/files/9c6589cc-2011-42ff-9ac4-ac7d95852232_images.png?auth_key=1790770950-603f1dfc29ae4b51a442cabec9eb4272-0-7fffdac67573329d2baf0817445a15f7",
+                foundation: "25.04.1946",
+                employees: "22.370",
+                website: "https://www.garantibbva.com.tr",
+                twitter: "https://twitter.com/garantibbva",
+                linkedin: "https://www.linkedin.com/company/garanti-bbva",
+                facebook: "https://www.facebook.com/garantibbva",
+                instagram: "https://www.instagram.com/garantibbva"
+            },
+            {
+                id: 3,
+                name: "Türk Hava Yolları",
+                ticker: "THYAO",
+                ceo: "Bilal Ekşi",
+                sector: "tasimacilik",
+                sectorName: "Havayolu Taşımacılığı",
+                activities: "Yolcu ve kargo taşımacılığıdır. Dünya çapında geniş bir ağda iç ve dış hat uçuşları yaparak Türkiye'yi küresel olarak bağlar.",
+                facilities: "492 uçaklık filo ve 217 destinasyonlu uçuş ağı.",
+                ownership: "Türkiye Varlık Fonu (%49.12) ve Diğer (%50.88).",
+                image: "https://z-cdn-media.chatglm.cn/files/151c3efb-57cd-4881-bb36-2777ce984694_images.jpeg?auth_key=1790773167-07d0add2e91241e4ac415d8c5e9c9208-0-8e7eabb9308a3fdfb31558373ec1391e",
+                foundation: "29.02.1956",
+                employees: "9.781",
+                website: "https://www.turkishairlines.com",
+                twitter: "https://twitter.com/turkishairlines",
+                linkedin: "https://www.linkedin.com/company/turkish-airlines",
+                facebook: "https://www.facebook.com/turkishairlines",
+                instagram: "https://www.instagram.com/turkishairlines"
+            },
+            {
+                id: 4,
+                name: "Koç Holding",
+                ticker: "KCHOL",
+                ceo: "Levent Çakıroğlu",
+                sector: "holding",
+                sectorName: "Holding",
+                activities: "Koç Grubu, gelirler, ihracat, çalışan sayısı, ödenen vergiler ve piyasa değeri açısından Türkiye'nin en büyük sanayi ve hizmet grubudur. Grubun kombine gelirleri Türkiye'nin GSYİH'sının %8'ine tekabül ediyor ve ihracat miktarı, Türkiye'nin toplam ihracatının %7'sini oluşturuyor.",
+                facilities: "Koç Holding, Arçelik, Tüpraş, Ford Otosan, Yapı Kredi ve Opet gibi Türkiye'nin önde gelen şirketlerini bünyesinde barındırmaktadır.",
+                ownership: "Family Danışmanlık Gayrimenkul Ve Ticaret Anonim Ş (%43.75), Diğer (%42.81), Vehbi Koç Vakfı (%7.29) ve Semahat Sevim Arsel (%6.15).",
+                image: "https://z-cdn-media.chatglm.cn/files/a5574451-53b5-46ff-861a-243f701dc6f7_koc--600.png?auth_key=1790777033-3b2a1cbb9283499f9520cdc3938beb47-0-236da23a3c16f927927a16e658d1fc6b",
+                foundation: "06.12.1963",
+                employees: "94.385",
+                website: "https://www.koc.com.tr",
+                twitter: "https://twitter.com/kocholding",
+                linkedin: "https://www.linkedin.com/company/koc-holding",
+                facebook: "https://www.facebook.com/kocholding",
+                instagram: "https://www.instagram.com/kocholding"
+            },
+            {
+                id: 5,
+                name: "ENKA",
+                ticker: "ENKAI",
+                ceo: "Mehmet Tara",
+                sector: "insaat",
+                sectorName: "İnşaat",
+                activities: "Türkiye'de ve yurtdışında yaygın bir inşaat faaliyet yelpazesinde gerek tek başına gerekse kurduğu müşterek yönetime tabi ortaklıkları veya iştirakleri vasıtasıyla hizmet vermekte olup, bu inşaat faaliyetleri arasında endüstriyel ve sosyal binalar, otoyol inşaatları ve doğalgazla çalışan elektrik enerjisi üreten termik güç santralleri yer almaktadır.",
+                facilities: "Çok sayıda proje sahası ve bazı kalıcı üretim/tesis altyapıları.",
+                ownership: "Sevda Gülçelik (%6.43), Tara Holding Anonim Şirketi (%49.8), Vildan Gülçelik (%7.99), Diğer (%29.91), Enka Spor Eğitim Ve Sosyal Yardım Vakfı (%5.87)",
+                image: "https://z-cdn-media.chatglm.cn/files/b7bdfba5-6114-4921-9830-2e365a0d5be1_enka-logo_JPG-1024x853.jpg?auth_key=1791178244-df355e7fe6ee4797a717f28738d45cd6-0-bd62b8777155d3f2e25283b226224a44",
+                foundation: "27.02.1958",
+                employees: "25.680",
+                website: "https://www.enka.com",
+                twitter: "https://twitter.com/enka",
+                linkedin: "https://www.linkedin.com/company/enka",
+                facebook: "https://www.facebook.com/enka",
+                instagram: "https://www.instagram.com/enka"
+            },
+            {
+                id: 6,
+                name: "Türkiye İş Bankası",
+                ticker: "ISCTR",
+                ceo: "Hakan Aran",
+                sector: "bankacilik",
+                sectorName: "Bankacılık",
+                activities: "Bankacılık hizmetleri: ticari, perakende, sigorta/finansal iştirakler vb.",
+                facilities: "1033 Banka Şubesi ve Dijital Kanallar.",
+                ownership: "İş Bankası Mensupları Muanzam Sandık Vakfı (%38,66), Atatürk Hisseleri(CHP) (%28,09), Halka Açık Pay (%33,25).",
+                image: "https://play-lh.googleusercontent.com/4zw8UsOJ9IaHeuT7tt8yOuJVuvLjSutZTTHb_1NHDYJWoNgfRR0ihqcwJ1x-oO7pX4c=w240-h480-rw",
+                foundation: "27.08.1924",
+                employees: "25.000",
+                website: "https://www.isbank.com.tr",
+                twitter: "https://twitter.com/isbank",
+                linkedin: "https://www.linkedin.com/company/isbank",
+                facebook: "https://www.facebook.com/isbank",
+                instagram: "https://www.instagram.com/isbank"
+            },
+            {
+                id: 7,
+                name: "Tüpraş",
+                ticker: "TUPRS",
+                ceo: "İbrahim Yelmenoğlu",
+                sector: "sanayi",
+                sectorName: "Petrokimya",
+                activities: "Rafineri/kimya: akaryakıt, jet yakıtı, motor yağları, bitüm, petrokimya ara ürünleri.",
+                facilities: "İzmit, İzmir, Kırıkkale, Batman gibi büyük rafineri kompleksleri.",
+                ownership: "Diğer (%47.25), Koç Holding Anonim Şirketi (%6.35), Enerji Yatırımları Aş (%46.4)",
+                image: "https://z-cdn-media.chatglm.cn/files/1d312234-12f7-48c8-a16f-84baeb271f5a_images%20%281%29.png?auth_key=1791201316-9dfbae106be54d28b252a8e9d5d4e6b4-0-6172ba46b61d6f0f73aff48e581fecc7",
+                foundation: "12.10.1983",
+                employees: "6.200",
+                website: "https://www.tupras.com.tr",
+                twitter: "https://twitter.com/tupras",
+                linkedin: "https://www.linkedin.com/company/tupras",
+                facebook: "https://www.facebook.com/tupras",
+                instagram: "https://www.instagram.com/tupras"
+            },
+            {
+                id: 8,
+                name: "Ford Otosan",
+                ticker: "FROTO",
+                ceo: "Güven Özyurt",
+                sector: "sanayi",
+                sectorName: "Otomotiv",
+                activities: "Otomotiv üretimi: binek ve hafif ticari araçlar, ticari araç üretimi; Ar–Ge.",
+                facilities: "Gölcük, Yeniköy, Eskişehir vb. üretim tesisleri.",
+                ownership: "Koç Holding A.Ş (%38.65), Ford Deutschland Engıneerıng Gmbh (%41.04), Diğer (%20.31)",
+                image: "https://pbs.twimg.com/media/G0VnQojWUAEDb3H.jpg",
+                foundation: "01.09.1959",
+                employees: "25.000",
+                website: "https://www.fordotosan.com.tr",
+                twitter: "https://twitter.com/fordotosan",
+                linkedin: "https://www.linkedin.com/company/ford-otosan",
+                facebook: "https://www.facebook.com/fordotosan",
+                instagram: "https://www.instagram.com/fordotosan"
+            },
+            {
+                id: 9,
+                name: "Akbank",
+                ticker: "AKBNK",
+                ceo: "Kaan Gür",
+                sector: "bankacilik",
+                sectorName: "Bankacılık",
+                activities: "Bankacılık (kurumsal, perakende, yatırım vb.).",
+                facilities: "889 Banka Şubesi ve Dijital Kanallar.",
+                ownership: "Hacı Ömer Sabancı Holding Anonim Şirketi (%40.75), Diğer (%59.25),.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7x62uHvGaCQkSVt7GmTQmSwMN37Lg7uCmX_PS6jR79t66njRUyJWe8IOttY7hbc0Oa5Q&usqp=CAU",
+                foundation: "30.01.1948",
+                employees: "13.450",
+                website: "https://www.akbank.com",
+                twitter: "https://twitter.com/akbank",
+                linkedin: "https://www.linkedin.com/company/akbank",
+                facebook: "https://www.facebook.com/akbank",
+                instagram: "https://www.instagram.com/akbank"
+            },
+            {
+                id: 10,
+                name: "Sabancı Holding",
+                ticker: "SAHOL",
+                ceo: "Kıvanç Zaimler",
+                sector: "holding",
+                sectorName: "Holding",
+                activities: "Finansal hizmetler, enerji, çimento ve malzeme teknolojileri, perakende, sanayi ve dijital teknolojiler alanlarında faaliyet göstermektedir. Grup, Türkiye'nin en büyük ve lider şirketlerinden oluşan geniş bir portföye sahiptir.",
+                facilities: "Akbank, Çimsa, Kordsa, CarrefourSA ve Enerjisa Üretim gibi önde gelen şirketleri bünyesinde barındırmaktadır.",
+                ownership: "Sakıp Sabancı Holding A.Ş (%13.9), Serra Sabancı (%7.02), Çiğdem Sabancı Bilen (%6.84), Suzan Sabancı Sabancı (%6.84).",
+                image: "https://albyatirim.com.tr/assets/main/img/api-icons/webp/sahol.webp",
+                foundation: "17.04.1967",
+                employees: "64.059",
+                website: "https://www.sabanci.com",
+                twitter: "https://twitter.com/sabanciholding",
+                linkedin: "https://www.linkedin.com/company/sabanci-holding",
+                facebook: "https://www.facebook.com/sabanciholding",
+                instagram: "https://www.instagram.com/sabanciholding"
+            }
+        ];
+
+        // US Company data
+        const usCompanies = [
+            {
+                id: 101,
+                name: "Apple",
+                ticker: "AAPL",
+                ceo: "Tim Cook",
+                sector: "teknoloji",
+                sectorName: "Teknoloji",
+                activities: "Apple Inc., iPhone, iPad, Mac, Apple Watch ve Apple TV gibi tüketici elektroniği ürünlerinin tasarımı, üretimi ve pazarlamasını yapmaktadır. Ayrıca iOS, macOS, watchOS ve tvOS işletim sistemleri ile App Store, iCloud, Apple Music ve Apple Pay gibi çeşitli dijital hizmetler sunmaktadır.",
+                facilities: "Apple Park (Kaliforniya), Cupertino kampüsü, perakende mağazalar dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedarlar: Vanguard Group (%7.6), BlackRock (%6.4), Berkshire Hathaway (%5.6).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png",
+                foundation: "01.04.1976",
+                employees: "164.000",
+                website: "https://www.apple.com",
+                twitter: "https://twitter.com/apple",
+                linkedin: "https://www.linkedin.com/company/apple",
+                facebook: "https://www.facebook.com/apple",
+                instagram: "https://www.instagram.com/apple"
+            },
+            {
+                id: 102,
+                name: "Microsoft",
+                ticker: "MSFT",
+                ceo: "Satya Nadella",
+                sector: "teknoloji",
+                sectorName: "Teknoloji",
+                activities: "Microsoft, Windows işletim sistemi, Office yazılım paketi, Azure bulut hizmetleri, Xbox oyun konsolları ve Surface cihazları gibi ürünler geliştirmektedir. Ayrıca LinkedIn, Skype ve GitHub gibi platformlara sahiptir.",
+                facilities: "Redmond kampüsü (Washington), ofisler dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedarlar: Vanguard Group (%8.2), BlackRock (%6.8), State Street Corporation (%4.1).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/800px-Microsoft_logo_%282012%29.svg.png",
+                foundation: "04.04.1975",
+                employees: "181.000",
+                website: "https://www.microsoft.com",
+                twitter: "https://twitter.com/microsoft",
+                linkedin: "https://www.linkedin.com/company/microsoft",
+                facebook: "https://www.facebook.com/microsoft",
+                instagram: "https://www.instagram.com/microsoft"
+            },
+            {
+                id: 103,
+                name: "Amazon",
+                ticker: "AMZN",
+                ceo: "Andy Jassy",
+                sector: "perakende",
+                sectorName: "Perakende",
+                activities: "Amazon, e-ticaret platformu, Amazon Web Services (AWS) bulut hizmetleri, Prime Video akış hizmeti, Kindle e-okuyucuları ve Echo akıllı hoparlörleri gibi ürünler sunmaktadır. Dünyanın en büyük e-ticaret ve bulut bilişim şirketlerinden biridir.",
+                facilities: "Seattle merkez (Washington), depolar ve veri merkezleri dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedar: Jeff Bezos (%10.3), Vanguard Group (%6.5), BlackRock (%5.7).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/800px-Amazon_logo.svg.png",
+                foundation: "05.07.1994",
+                employees: "1.298.000",
+                website: "https://www.amazon.com",
+                twitter: "https://twitter.com/amazon",
+                linkedin: "https://www.linkedin.com/company/amazon",
+                facebook: "https://www.facebook.com/amazon",
+                instagram: "https://www.instagram.com/amazon"
+            },
+            {
+                id: 104,
+                name: "Tesla",
+                ticker: "TSLA",
+                ceo: "Elon Musk",
+                sector: "otomotiv",
+                sectorName: "Otomotiv",
+                activities: "Tesla, elektrikli araçlar (Model S, Model 3, Model X, Model Y), enerji depolama ürünleri (Powerwall, Megapack) ve güneş enerjisi ürünleri (Solar Roof) üretmektedir. Ayrıca otopilot teknolojileri ve tam otonom sürüş yetenekleri geliştirmektedir.",
+                facilities: "Fremont fabrikası (Kaliforniya), Gigafactory tesisleri (Nevada, New York, Şanghay, Berlin, Teksas).",
+                ownership: "Halka açık şirket, en büyük hissedar: Elon Musk (%17), Vanguard Group (%6.1), Baillie Gifford (%4.8).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/800px-Tesla_Motors.svg.png",
+                foundation: "01.07.2003",
+                employees: "99.290",
+                website: "https://www.tesla.com",
+                twitter: "https://twitter.com/tesla",
+                linkedin: "https://www.linkedin.com/company/tesla-motors",
+                facebook: "https://www.facebook.com/tesla",
+                instagram: "https://www.instagram.com/teslamotors"
+            },
+            {
+                id: 105,
+                name: "Meta (Facebook)",
+                ticker: "META",
+                ceo: "Mark Zuckerberg",
+                sector: "teknoloji",
+                sectorName: "Teknoloji",
+                activities: "Meta Platforms, Facebook, Instagram, WhatsApp ve Messenger gibi sosyal medya platformlarını işletmektedir. Ayrıca Oculus VR başlıkları, Portal video cihazları ve metaverse (sanal evren) teknolojileri geliştirmektedir.",
+                facilities: "Menlo Park kampüsü (Kaliforniya), ofisler dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedar: Mark Zuckerberg (%13.6), Vanguard Group (%7.2), BlackRock (%5.1).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/800px-Meta_Platforms_Inc._logo.svg.png",
+                foundation: "04.02.2004",
+                employees: "71.977",
+                website: "https://www.meta.com",
+                twitter: "https://twitter.com/meta",
+                linkedin: "https://www.linkedin.com/company/meta",
+                facebook: "https://www.facebook.com/meta",
+                instagram: "https://www.instagram.com/meta"
+            },
+            {
+                id: 106,
+                name: "NVIDIA",
+                ticker: "NVDA",
+                ceo: "Jensen Huang",
+                sector: "teknoloji",
+                sectorName: "Teknoloji",
+                activities: "NVIDIA, grafik işlemcileri (GPU'lar), sistem-on-chip (SoC) birimleri ve oyun konsolları için işlemciler tasarlamaktadır. Ayrıca yapay zeka, derin öğrenme, otonom araçlar ve veri merkezleri için teknolojiler geliştirmektedir.",
+                facilities: "Santa Clara merkez (Kaliforniya), ofisler dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedarlar: Vanguard Group (%8.1), BlackRock (%6.9), FMR LLC (%4.3).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nvidia_logo.svg/800px-Nvidia_logo.svg.png",
+                foundation: "24.01.1993",
+                employees: "22.473",
+                website: "https://www.nvidia.com",
+                twitter: "https://twitter.com/nvidia",
+                linkedin: "https://www.linkedin.com/company/nvidia",
+                facebook: "https://www.facebook.com/nvidia",
+                instagram: "https://www.instagram.com/nvidia"
+            },
+            {
+                id: 107,
+                name: "Google (Alphabet)",
+                ticker: "GOOGL",
+                ceo: "Sundar Pichai",
+                sector: "teknoloji",
+                sectorName: "Teknoloji",
+                activities: "Alphabet, Google arama motoru, YouTube, Android işletim sistemi, Google Chrome tarayıcısı, Google Haritalar, Google Drive ve Google Workspace gibi ürünler sunmaktadır. Ayrıca Waymo otonom araç teknolojisi ve Verily yaşam bilimleri gibi çeşitli diğer teknoloji şirketlerine sahiptir.",
+                facilities: "Mountain View kampüsü (Kaliforniya), Googleplex, ofisler dünya genelinde.",
+                ownership: "Halka açık şirket, en büyük hissedarlar: Vanguard Group (%7.1), BlackRock (%6.3), Larry Page (%5.8).",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/800px-Google_2015_logo.svg.png",
+                foundation: "04.09.1998",
+                employees: "156.500",
+                website: "https://www.google.com",
+                twitter: "https://twitter.com/google",
+                linkedin: "https://www.linkedin.com/company/google",
+                facebook: "https://www.facebook.com/google",
+                instagram: "https://www.instagram.com/google"
+            }
+        ];
+
+        // Current page state
+        let currentPage = 'home';
+        let currentCompany = null;
+        let companyModal = null;
+        let comparisonList = [];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initHeroSlideshow();
+            initScrollAnimations();
+            initNavbarScroll();
+            initModal();
+            renderCompanies(companies);
+            setupEventListeners();
+            updateComparisonCount();
+        });
+
+        // Initialize modal
+        function initModal() {
+            const modalElement = document.getElementById('companyDetailModal');
+            companyModal = new bootstrap.Modal(modalElement);
+            
+            // Add event listeners for close buttons
+            const closeBtn = document.getElementById('modalCloseBtn');
+            const footerCloseBtn = document.getElementById('modalFooterCloseBtn');
+            
+            closeBtn.addEventListener('click', function() {
+                companyModal.hide();
+            });
+            
+            footerCloseBtn.addEventListener('click', function() {
+                companyModal.hide();
+            });
+            
+            // Also close when clicking outside the modal
+            modalElement.addEventListener('click', function(event) {
+                if (event.target === modalElement) {
+                    companyModal.hide();
+                }
+            });
+            
+            // Also close when pressing ESC key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && companyModal._isShown) {
+                    companyModal.hide();
+                }
+            });
+        }
+
+        // Create enhanced animated background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+
+            // Add particle lines
+            for (let i = 0; i < 5; i++) {
+                const line = document.createElement('div');
+                line.className = 'particle-line';
+                line.style.left = Math.random() * 100 + '%';
+                line.style.animationDelay = Math.random() * 10 + 's';
+                line.style.animationDuration = (10 + Math.random() * 5) + 's';
+                particlesContainer.appendChild(line);
+            }
+        }
+
+        // Initialize hero slideshow
+        function initHeroSlideshow() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicatorsContainer = document.getElementById('heroIndicators');
+            let currentSlide = 0;
+            
+            // Create indicators
+            slides.forEach((slide, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'hero-indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            const indicators = document.querySelectorAll('.hero-indicator');
+            
+            function goToSlide(slideIndex) {
+                slides[currentSlide].classList.remove('active');
+                indicators[currentSlide].classList.remove('active');
+                
+                currentSlide = slideIndex;
+                
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                goToSlide(nextIndex);
+            }
+            
+            // Auto-advance slides
+            setInterval(nextSlide, 5000);
+        }
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize navbar scroll effect
+        function initNavbarScroll() {
+            const navbar = document.getElementById('mainNavbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Show loading
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        // Hide loading
+        function hideLoading() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }, 800);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const toast = document.getElementById('notificationToast');
+            const messageElement = document.getElementById('notificationMessage');
+            const icon = toast.querySelector('i');
+            
+            messageElement.textContent = message;
+            toast.className = `notification-toast ${type}`;
+            
+            if (type === 'success') {
+                icon.className = 'fas fa-check-circle';
+            } else {
+                icon.className = 'fas fa-exclamation-circle';
+            }
+            
+            toast.style.display = 'flex';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Render Turkish companies
+        function renderCompanies(companiesToRender) {
+            showLoading();
+            const container = document.getElementById('companiesContainer');
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+
+                if (companiesToRender.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-search fa-5x text-muted mb-4"></i>
+                            <h4 class="text-muted">Sonuç Bulunamadı</h4>
+                            <p class="text-muted">Aradığınız kriterlere uygun şirket bulunamadı.</p>
+                        </div>
+                    `;
+                    hideLoading();
+                    return;
+                }
+
+                companiesToRender.forEach((company, index) => {
+                    const companyCard = document.createElement('div');
+                    companyCard.className = 'col-lg-4 col-md-6 mb-4 company-item scroll-animate';
+                    companyCard.dataset.sector = company.sector;
+                    companyCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    companyCard.innerHTML = `
+                        <div class="company-card">
+                            <div class="compare-checkbox">
+                                <input type="checkbox" id="compare-${company.id}" onchange="toggleComparison(${company.id})">
+                                <label for="compare-${company.id}"></label>
+                            </div>
+                            <div class="card-header-custom">
+                                <img src="${company.image}" alt="${company.name}" class="company-logo">
+                                <div class="company-name">${company.name}</div>
+                                <div class="company-ticker">${company.ticker}</div>
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-user-tie"></i> CEO / Genel Müdür
+                                    </div>
+                                    <div class="info-content">${company.ceo}</div>
+                                </div>
+                                
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-industry"></i> Faaliyet Alanı
+                                    </div>
+                                    <div class="info-content">${company.activities.substring(0, 100)}${company.activities.length > 100 ? '...' : ''}</div>
+                                </div>
+                                
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-building"></i> Öne Çıkan Tesisler
+                                    </div>
+                                    <div class="info-content">${company.facilities}</div>
+                                </div>
+                                
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-users"></i> Ortaklık Yapısı
+                                    </div>
+                                    <div class="info-content">${company.ownership.substring(0, 100)}${company.ownership.length > 100 ? '...' : ''}</div>
+                                </div>
+
+                                ${company.foundation ? `
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-calendar-alt"></i> Kuruluş
+                                    </div>
+                                    <div class="info-content">${company.foundation}</div>
+                                </div>
+                                ` : ''}
+
+                                ${company.employees ? `
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="fas fa-user-group"></i> Çalışan Sayısı
+                                    </div>
+                                    <div class="info-content">${company.employees}</div>
+                                </div>
+                                ` : ''}
+                                
+                                <button class="view-details-btn w-100" onclick="showCompanyDetail(${company.id})">
+                                    <i class="fas fa-eye me-2"></i>Detayları Görüntüle
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(companyCard);
+                });
+                
+                // Re-initialize scroll animations for new elements
+                initScrollAnimations();
+                hideLoading();
+            }, 500);
+        }
+
+        // Render US companies
+        function renderUSCompanies(companiesToRender) {
+            showLoading();
+            const container = document.getElementById('usCompaniesContainer');
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+
+                if (companiesToRender.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-search fa-5x text-muted mb-4"></i>
+                            <h4 class="text-muted">Sonuç Bulunamadı</h4>
+                            <p class="text-muted">Aradığınız kriterlere uygun şirket bulunamadı.</p>
+                        </div>
+                    `;
+                    hideLoading();
+                    return;
+                }
+
+                companiesToRender.forEach((company, index) => {
+                    const companyCard = document.createElement('div');
+                    companyCard.className = 'col-lg-4 col-md-6 mb-4 us-company-item scroll-animate';
+                    companyCard.dataset.sector = company.sector;
+                    companyCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    companyCard.innerHTML = `
+                        <div class="us-company-card">
+                            <div class="compare-checkbox">
+                                <input type="checkbox" id="compare-${company.id}" onchange="toggleComparison(${company.id})">
+                                <label for="compare-${company.id}"></label>
+                            </div>
+                            <div class="us-card-header-custom">
+                                <img src="${company.image}" alt="${company.name}" class="us-company-logo">
+                                <div class="us-company-name">${company.name}</div>
+                                <div class="us-company-ticker">${company.ticker}</div>
+                            </div>
+                            <div class="us-card-body-custom">
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-user-tie"></i> CEO
+                                    </div>
+                                    <div class="us-info-content">${company.ceo}</div>
+                                </div>
+                                
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-industry"></i> Faaliyet Alanı
+                                    </div>
+                                    <div class="us-info-content">${company.activities.substring(0, 100)}${company.activities.length > 100 ? '...' : ''}</div>
+                                </div>
+                                
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-building"></i> Öne Çıkan Tesisler
+                                    </div>
+                                    <div class="us-info-content">${company.facilities}</div>
+                                </div>
+                                
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-users"></i> Ortaklık Yapısı
+                                    </div>
+                                    <div class="us-info-content">${company.ownership.substring(0, 100)}${company.ownership.length > 100 ? '...' : ''}</div>
+                                </div>
+
+                                ${company.foundation ? `
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-calendar-alt"></i> Kuruluş
+                                    </div>
+                                    <div class="us-info-content">${company.foundation}</div>
+                                </div>
+                                ` : ''}
+
+                                ${company.employees ? `
+                                <div class="us-info-section">
+                                    <div class="us-info-title">
+                                        <i class="fas fa-user-group"></i> Çalışan Sayısı
+                                    </div>
+                                    <div class="us-info-content">${company.employees}</div>
+                                </div>
+                                ` : ''}
+                                
+                                <button class="us-view-details-btn w-100" onclick="showUSCompanyDetail(${company.id})">
+                                    <i class="fas fa-eye me-2"></i>Detayları Görüntüle
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(companyCard);
+                });
+                
+                // Re-initialize scroll animations for new elements
+                initScrollAnimations();
+                hideLoading();
+            }, 500);
+        }
+
+        // Render sectors
+        function renderSectors() {
+            showLoading();
+            const container = document.getElementById('sectorsContainer');
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+                
+                // Group companies by sector
+                const sectors = {};
+                companies.forEach(company => {
+                    if (!sectors[company.sector]) {
+                        sectors[company.sector] = {
+                            name: company.sectorName,
+                            icon: getSectorIcon(company.sector),
+                            companies: []
+                        };
+                    }
+                    sectors[company.sector].companies.push({
+                        name: company.name,
+                        ticker: company.ticker
+                    });
+                });
+                
+                // Create sector cards
+                Object.keys(sectors).forEach((sectorKey, index) => {
+                    const sector = sectors[sectorKey];
+                    const sectorCard = document.createElement('div');
+                    sectorCard.className = 'col-lg-4 col-md-6 mb-4 scroll-animate';
+                    sectorCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    sectorCard.innerHTML = `
+                        <div class="sector-card">
+                            <div class="sector-header">
+                                <div class="sector-icon">
+                                    <i class="${sector.icon}"></i>
+                                </div>
+                                <div class="sector-name">${sector.name}</div>
+                                <div class="sector-count">${sector.companies.length} Şirket</div>
+                            </div>
+                            <div class="sector-body">
+                                <div class="sector-description">
+                                    ${getSectorDescription(sectorKey)}
+                                </div>
+                                <div class="sector-companies">
+                                    <div class="sector-companies-title">Öne Çıkan Şirketler</div>
+                                    <ul class="sector-company-list">
+                                        ${sector.companies.slice(0, 3).map(company => `
+                                            <li class="sector-company-item">
+                                                <span class="sector-company-name">${company.name}</span>
+                                                <span class="sector-company-ticker">${company.ticker}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                                <button class="view-sector-btn" onclick="filterBySector('${sectorKey}')">
+                                    <i class="fas fa-eye me-2"></i>Tüm Şirketleri Görüntüle
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(sectorCard);
+                });
+                
+                // Re-initialize scroll animations for new elements
+                initScrollAnimations();
+                hideLoading();
+            }, 500);
+        }
+
+        // Get sector icon
+        function getSectorIcon(sector) {
+            const icons = {
+                'bankacilik': 'fas fa-university',
+                'sanayi': 'fas fa-industry',
+                'holding': 'fas fa-sitemap',
+                'tasimacilik': 'fas fa-plane',
+                'insaat': 'fas fa-hard-hat'
+            };
+            return icons[sector] || 'fas fa-building';
+        }
+
+        // Get sector description
+        function getSectorDescription(sector) {
+            const descriptions = {
+                'bankacilik': 'Türkiye bankacılık sektörü, ülke ekonomisinin temel taşlarından biridir. Sektör, perakende bankacılık, kurumsal bankacılık ve yatırım bankacılığı gibi çeşitli alanlarda hizmet vermektedir.',
+                'sanayi': 'Türkiye sanayi sektörü, üretim ve teknoloji alanında önemli bir rol oynamaktadır. Savunma, otomotiv, petrokimya gibi alt sektörler, ülkenin ekonomik büyümesine katkı sağlamaktadır.',
+                'holding': 'Türkiye\'deki holdingler, çok çeşitli sektörlerde faaliyet gösteren büyük iş gruplarıdır. Bu holdingler, ülke ekonomisinin önemli bir kısmını oluşturmaktadır.',
+                'tasimacilik': 'Türkiye taşımacılık sektörü, havayolu, denizyolu, karayolu ve demiryolu taşımacılığını kapsamaktadır. Sektör, ülkenin ticaret ve turizm için kritik bir rol oynamaktadır.',
+                'insaat': 'Türkiye inşaat sektörü, hem yurt içinde hem de yurt dışında büyük projelere imza atmaktadır. Sektör, ülke ekonomisi için önemli bir istihdam ve büyüme kaynağıdır.'
+            };
+            return descriptions[sector] || 'Bu sektör hakkında detaylı bilgi bulunmamaktadır.';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Turkish filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    if (filter === 'all') {
+                        renderCompanies(companies);
+                    } else {
+                        const filteredCompanies = companies.filter(company => company.sector === filter);
+                        renderCompanies(filteredCompanies);
+                    }
+                });
+            });
+            
+            // US filter buttons
+            document.querySelectorAll('.us-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.us-filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    if (filter === 'all') {
+                        renderUSCompanies(usCompanies);
+                    } else {
+                        const filteredCompanies = usCompanies.filter(company => company.sector === filter);
+                        renderUSCompanies(filteredCompanies);
+                    }
+                });
+            });
+            
+            // Turkish search input with debounce
+            let searchTimeout;
+            document.getElementById('searchInput').addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const searchTerm = this.value.toLowerCase();
+                    if (searchTerm === '') {
+                        renderCompanies(companies);
+                    } else {
+                        const filteredCompanies = companies.filter(company => 
+                            company.name.toLowerCase().includes(searchTerm) || 
+                            company.ticker.toLowerCase().includes(searchTerm)
+                        );
+                        renderCompanies(filteredCompanies);
+                    }
+                }, 500);
+            });
+
+            // US search input with debounce
+            let usSearchTimeout;
+            document.getElementById('usSearchInput').addEventListener('input', function() {
+                clearTimeout(usSearchTimeout);
+                usSearchTimeout = setTimeout(() => {
+                    const searchTerm = this.value.toLowerCase();
+                    if (searchTerm === '') {
+                        renderUSCompanies(usCompanies);
+                    } else {
+                        const filteredCompanies = usCompanies.filter(company => 
+                            company.name.toLowerCase().includes(searchTerm) || 
+                            company.ticker.toLowerCase().includes(searchTerm)
+                        );
+                        renderUSCompanies(filteredCompanies);
+                    }
+                }, 500);
+            });
+
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Simulate form submission
+                showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success');
+                
+                // Reset form
+                this.reset();
+            });
+        }
+
+        // Show Turkish company detail modal
+        function showCompanyDetail(companyId) {
+            const company = companies.find(c => c.id === companyId);
+            if (!company) return;
+            
+            currentCompany = company;
+            
+            // Set modal title
+            document.getElementById('modalTitle').textContent = `${company.name} (${company.ticker})`;
+            
+            // Set modal body with improved layout
+            document.getElementById('modalBody').innerHTML = `
+                <div class="modal-company-header">
+                    <div class="modal-logo-container">
+                        <img src="${company.image}" alt="${company.name}" class="modal-logo">
+                    </div>
+                    <div class="modal-company-name">${company.name}</div>
+                    <div class="modal-company-ticker">${company.ticker}</div>
+                    <div class="modal-company-sector">${company.sectorName}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-user-tie"></i> CEO / Genel Müdür
+                            </div>
+                            <div class="detail-content">${company.ceo}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-industry"></i> Faaliyet Alanı
+                            </div>
+                            <div class="detail-content">${company.activities}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-building"></i> Öne Çıkan Tesisler
+                            </div>
+                            <div class="detail-content">${company.facilities}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-users"></i> Ortaklık Yapısı
+                            </div>
+                            <div class="detail-content">${company.ownership}</div>
+                        </div>
+
+                        ${company.foundation ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-calendar-alt"></i> Kuruluş Tarihi
+                            </div>
+                            <div class="detail-content">${company.foundation}</div>
+                        </div>
+                        ` : ''}
+
+                        ${company.employees ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-user-group"></i> Çalışan Sayısı
+                            </div>
+                            <div class="detail-content">${company.employees}</div>
+                        </div>
+                        ` : ''}
+
+                        ${company.website ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-globe"></i> Web Sitesi
+                            </div>
+                            <div class="detail-content">
+                                <a href="${company.website}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ziyaret Et
+                                </a>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Show modal
+            companyModal.show();
+        }
+
+        // Show US company detail modal
+        function showUSCompanyDetail(companyId) {
+            const company = usCompanies.find(c => c.id === companyId);
+            if (!company) return;
+            
+            currentCompany = company;
+            
+            // Set modal title
+            document.getElementById('modalTitle').textContent = `${company.name} (${company.ticker})`;
+            
+            // Set modal body with improved layout
+            document.getElementById('modalBody').innerHTML = `
+                <div class="modal-company-header">
+                    <div class="modal-logo-container">
+                        <img src="${company.image}" alt="${company.name}" class="modal-logo">
+                    </div>
+                    <div class="modal-company-name">${company.name}</div>
+                    <div class="modal-company-ticker">${company.ticker}</div>
+                    <div class="modal-company-sector">${company.sectorName}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-user-tie"></i> CEO
+                            </div>
+                            <div class="detail-content">${company.ceo}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-industry"></i> Faaliyet Alanı
+                            </div>
+                            <div class="detail-content">${company.activities}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-building"></i> Öne Çıkan Tesisler
+                            </div>
+                            <div class="detail-content">${company.facilities}</div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-users"></i> Ortaklık Yapısı
+                            </div>
+                            <div class="detail-content">${company.ownership}</div>
+                        </div>
+
+                        ${company.foundation ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-calendar-alt"></i> Kuruluş Tarihi
+                            </div>
+                            <div class="detail-content">${company.foundation}</div>
+                        </div>
+                        ` : ''}
+
+                        ${company.employees ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-user-group"></i> Çalışan Sayısı
+                            </div>
+                            <div class="detail-content">${company.employees}</div>
+                        </div>
+                        ` : ''}
+
+                        ${company.website ? `
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-globe"></i> Web Sitesi
+                            </div>
+                            <div class="detail-content">
+                                <a href="${company.website}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ziyaret Et
+                                </a>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Show modal
+            companyModal.show();
+        }
+
+        // Download report function
+        function downloadReport() {
+            if (!currentCompany) return;
+            
+            showNotification('Rapor hazırlanıyor...', 'success');
+            
+            // Simulate report generation
+            setTimeout(() => {
+                // Create a simple text report
+                const reportContent = `
+ ${currentCompany.name} (${currentCompany.ticker}) Şirket Raporu
+==============================================
+
+CEO: ${currentCompany.ceo}
+Sektör: ${currentCompany.sectorName}
+Kuruluş Tarihi: ${currentCompany.foundation || 'Bilgi mevcut değil'}
+Çalışan Sayısı: ${currentCompany.employees || 'Bilgi mevcut değil'}
+
+Faaliyet Alanı:
+ ${currentCompany.activities}
+
+Öne Çıkan Tesisler:
+ ${currentCompany.facilities}
+
+Ortaklık Yapısı:
+ ${currentCompany.ownership}
+
+Web Sitesi: ${currentCompany.website || 'Bilgi mevcut değil'}
+
+Rapor Tarihi: ${new Date().toLocaleDateString('tr-TR')}
+                `;
+                
+                // Create a blob and download link
+                const blob = new Blob([reportContent], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${currentCompany.name}_Raporu.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                showNotification('Rapor başarıyla indirildi!', 'success');
+            }, 2000);
+        }
+
+        // Social media functions
+        function openSocial(platform) {
+            if (!currentCompany) {
+                // If no company is selected, open the main social media pages
+                const urls = {
+                    twitter: 'https://twitter.com',
+                    linkedin: 'https://linkedin.com',
+                    facebook: 'https://facebook.com',
+                    instagram: 'https://instagram.com'
+                };
+                window.open(urls[platform], '_blank');
+                return;
+            }
+            
+            // If a company is selected, try to open the company's social media page
+            if (currentCompany[platform]) {
+                window.open(currentCompany[platform], '_blank');
+            } else {
+                showNotification('Bu şirketin ' + platform + ' hesabı bulunmamaktadır.', 'error');
+            }
+        }
+
+        // Navigation functions
+        function navigateTo(page) {
+            // Update active nav link
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the clicked nav link
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(page)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Hide all pages
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('usCompaniesPage').classList.remove('active');
+            document.getElementById('sectorsPage').classList.remove('active');
+            document.getElementById('contactPage').classList.remove('active');
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('filterSection').style.display = 'none';
+            
+            // Handle navigation based on page
+            switch(page) {
+                case 'home':
+                    currentPage = 'home';
+                    document.getElementById('mainContent').style.display = 'block';
+                    document.getElementById('heroSection').style.display = 'flex';
+                    document.getElementById('filterSection').style.display = 'block';
+                    window.scrollTo(0, 0);
+                    showNotification('Ana sayfaya yönlendiriliyorsunuz...', 'success');
+                    break;
+                    
+                case 'companies':
+                    currentPage = 'companies';
+                    document.getElementById('mainContent').style.display = 'block';
+                    document.getElementById('heroSection').style.display = 'none';
+                    document.getElementById('filterSection').style.display = 'block';
+                    window.scrollTo(0, 0);
+                    showNotification('Türk şirketleri sayfasına yönlendiriliyorsunuz...', 'success');
+                    break;
+                    
+                case 'us-companies':
+                    currentPage = 'us-companies';
+                    document.getElementById('usCompaniesPage').classList.add('active');
+                    renderUSCompanies(usCompanies);
+                    window.scrollTo(0, 0);
+                    showNotification('Amerikan şirketleri sayfasına yönlendiriliyorsunuz...', 'success');
+                    break;
+                    
+                case 'sectors':
+                    currentPage = 'sectors';
+                    document.getElementById('sectorsPage').classList.add('active');
+                    renderSectors();
+                    window.scrollTo(0, 0);
+                    showNotification('Sektörler sayfasına yönlendiriliyorsunuz...', 'success');
+                    break;
+                    
+                case 'contact':
+                    currentPage = 'contact';
+                    document.getElementById('contactPage').classList.add('active');
+                    window.scrollTo(0, 0);
+                    showNotification('İletişim sayfasına yönlendiriliyorsunuz...', 'success');
+                    break;
+                    
+                default:
+                    showNotification('Sayfa bulunamadı', 'error');
+            }
+        }
+
+        // Filter by sector
+        function filterBySector(sector) {
+            navigateTo('companies');
+            
+            setTimeout(() => {
+                // Set active filter button
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.filter === sector) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Filter companies
+                const filteredCompanies = companies.filter(company => company.sector === sector);
+                renderCompanies(filteredCompanies);
+                
+                showNotification(`${getSectorName(sector)} sektöründeki şirketler filtrelendi`, 'success');
+            }, 500);
+        }
+
+        // Get sector name
+        function getSectorName(sector) {
+            const sectorNames = {
+                'bankacilik': 'Bankacılık',
+                'sanayi': 'Sanayi',
+                'holding': 'Holding',
+                'tasimacilik': 'Taşımacılık',
+                'insaat': 'İnşaat'
+            };
+            return sectorNames[sector] || 'Bilinmeyen';
+        }
+
+        // Comparison functions
+        function toggleComparison(companyId) {
+            const index = comparisonList.indexOf(companyId);
+            if (index > -1) {
+                comparisonList.splice(index, 1);
+            } else {
+                if (comparisonList.length >= 4) {
+                    showNotification('En fazla 4 şirket karşılaştırabilirsiniz', 'error');
+                    document.getElementById(`compare-${companyId}`).checked = false;
+                    return;
+                }
+                comparisonList.push(companyId);
+            }
+            updateComparisonCount();
+        }
+
+        function updateComparisonCount() {
+            const count = comparisonList.length;
+            const comparisonBar = document.getElementById('comparisonBar');
+            const comparisonCount = document.getElementById('comparisonCount');
+            
+            comparisonCount.textContent = count;
+            
+            if (count > 0) {
+                comparisonBar.classList.add('show');
+            } else {
+                comparisonBar.classList.remove('show');
+            }
+        }
+
+        function showComparison() {
+            if (comparisonList.length < 2) {
+                showNotification('Karşılaştırma için en az 2 şirket seçin', 'error');
+                return;
+            }
+            
+            showNotification('Karşılaştırma özelliği yakında eklenecek!', 'success');
+        }
+    </script>
+</body>
+</html>
